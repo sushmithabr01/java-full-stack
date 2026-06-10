@@ -3,81 +3,688 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sushma — Full Stack Developer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sushmitha — Full Stack Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00bcd4;
+            --secondary-color: #00838f;
+            --text-color: #333;
+            --light-bg: #e0f7fa;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-color);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 8rem 2rem 4rem;
+            margin-top: 60px;
+            text-align: center;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .role {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            background: var(--white);
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        section {
+            padding: 3rem 2rem;
+            border-bottom: 1px solid #eee;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            box-shadow: var(--shadow);
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 0.3rem 0;
+        }
+
+        .skill-card li::before {
+            content: '✓ ';
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Projects Section */
+        .projects-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .project-item {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .project-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .project-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Education Section */
+        .education-details {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .education-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:hover {
+            background: #f5f5f5;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a, .contact-item p {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .contact-item .label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: var(--white);
+                gap: 0;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 1rem 2rem;
+                border-bottom: 1px solid #eee;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                margin: 0 1rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">Sushmitha</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-toggle" id="mobileToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Header -->
     <header>
-        <h1>Sushma</h1>
-        <p class="subtitle">B.Tech (CSE - AI) — Mother Theresa College</p>
-        <p class="role">Aspiring Full Stack Developer</p>
-        <hr>
+        <h1>Sushmitha</h1>
+        <p class="subtitle">BTech Computer Science & Engineering (AI)</p>
+        <p class="subtitle">Mother Theresa Engineering College</p>
+        <p class="role">Full Stack Developer</p>
     </header>
 
+    <!-- Main Content -->
     <main>
+        <!-- About Section -->
         <section id="about">
-            <h2>About</h2>
-            <img src="files/profile.svg" alt="Sushma profile" class="profile">
-            <p>I am <strong>Sushma</strong>, currently pursuing B.Tech in <em>CSE - Artificial Intelligence</em> at Mother Theresa College. I build responsive, accessible web applications and enjoy working across the full stack — from UI to backend and databases.</p>
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="profile-img">👩‍💻</div>
+                <div class="about-text">
+                    <p>Hi! I'm <strong>Sushmitha</strong>, a passionate Full Stack Developer currently pursuing BTech in Computer Science & Engineering with specialization in Artificial Intelligence at Mother Theresa Engineering College.</p>
+                    <p>I'm dedicated to building responsive, accessible, and user-friendly web applications. I enjoy solving complex problems and continuously learning new technologies across the entire development stack.</p>
+                    <p>When I'm not coding, I'm exploring new frameworks, contributing to open-source projects, and staying updated with the latest tech trends.</p>
+                </div>
+            </div>
         </section>
 
+        <!-- Skills Section -->
         <section id="skills">
-            <h2>Skills</h2>
-            <ul>
-                <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript, React</li>
-                <li><strong>Backend:</strong> Node.js, Express, Java (Spring)</li>
-                <li><strong>Databases:</strong> MySQL, MongoDB</li>
-                <li><strong>Tools:</strong> Git, GitHub, Docker, VS Code</li>
-            </ul>
+            <h2>Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Frontend Development</h3>
+                    <ul>
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript</li>
+                        <li>React</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Backend Development</h3>
+                    <ul>
+                        <li>Node.js</li>
+                        <li>Express.js</li>
+                        <li>Java Spring</li>
+                        <li>REST APIs</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Databases & Tools</h3>
+                    <ul>
+                        <li>MySQL</li>
+                        <li>MongoDB</li>
+                        <li>Git & GitHub</li>
+                        <li>VS Code</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Specializations</h3>
+                    <ul>
+                        <li>AI & Machine Learning</li>
+                        <li>Web Development</li>
+                        <li>UI/UX Design</li>
+                        <li>Problem Solving</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
+        <!-- Projects Section -->
         <section id="projects">
-            <h2>Selected Projects</h2>
-            <ol>
-                <li><strong>Portfolio Website</strong> — Responsive personal site built with HTML, CSS and JavaScript.</li>
-                <li><strong>Task Manager App</strong> — Full stack app using React frontend and Node/Express backend with MongoDB.</li>
-                <li><strong>College Event Portal</strong> — Team project: user authentication, event CRUD, and notifications.</li>
-            </ol>
+            <h2>Featured Projects</h2>
+            <div class="projects-list">
+                <div class="project-item">
+                    <h3>📱 Portfolio Website</h3>
+                    <p>A responsive personal portfolio built with HTML5, CSS3, and Vanilla JavaScript. Features smooth scrolling, mobile-friendly design, and interactive animations.</p>
+                </div>
+                <div class="project-item">
+                    <h3>✅ Task Manager Application</h3>
+                    <p>Full-stack application using React frontend with Node.js/Express backend and MongoDB database. Includes user authentication, CRUD operations, and real-time updates.</p>
+                </div>
+                <div class="project-item">
+                    <h3>🎓 College Event Portal</h3>
+                    <p>Collaborative team project featuring user authentication, event management (CRUD), notification system, and responsive design for seamless event organization.</p>
+                </div>
+                <div class="project-item">
+                    <h3>🔍 Weather App</h3>
+                    <p>Interactive weather application using APIs, dynamic content rendering, and modern UI/UX principles. Built with JavaScript and integrated with real-time weather data.</p>
+                </div>
+            </div>
         </section>
 
+        <!-- Education Section -->
         <section id="education">
             <h2>Education</h2>
-            <p><strong>B.Tech — Computer Science & Engineering (AI)</strong><br>Mother Theresa College</p>
-            <table>
-                <tr>
-                    <th>Semester</th>
-                    <th>Subject</th>
-                    <th>Marks</th>
-                </tr>
-                <tr>
-                    <td>5th</td>
-                    <td>DBMS</td>
-                    <td>89</td>
-                </tr>
-                <tr>
-                    <td>5th</td>
-                    <td>Software Engineering</td>
-                    <td>99</td>
-                </tr>
-                <tr>
-                    <td>5th</td>
-                    <td>Operating Systems</td>
-                    <td>80</td>
-                </tr>
-            </table>
+            <div class="education-details">
+                <h3>BTech — Computer Science & Engineering (AI)</h3>
+                <p><strong>Institution:</strong> Mother Theresa Engineering College</p>
+                <p><strong>Status:</strong> Currently Pursuing</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Semester</th>
+                            <th>Subject</th>
+                            <th>Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>5th</td>
+                            <td>Database Management Systems</td>
+                            <td>89</td>
+                        </tr>
+                        <tr>
+                            <td>5th</td>
+                            <td>Software Engineering</td>
+                            <td>99</td>
+                        </tr>
+                        <tr>
+                            <td>5th</td>
+                            <td>Operating Systems</td>
+                            <td>80</td>
+                        </tr>
+                        <tr>
+                            <td>5th</td>
+                            <td>Data Structures</td>
+                            <td>92</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:sushma.cseai@example.com">sushma.cseai@example.com</a></p>
-            <p>GitHub: <a href="https://github.com/" target="_blank" rel="noopener">github.com/sushma</a></p>
+            <h2>Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="label">📧 Email</span>
+                    <a href="mailto:sushmithabr80@gmail.com">sushmithabr80@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span class="label">📱 Phone</span>
+                    <a href="tel:+918660549275">+91 8660549275</a>
+                </div>
+                <div class="contact-item">
+                    <span class="label">📍 Location</span>
+                    <p>India</p>
+                </div>
+                <div class="contact-item">
+                    <span class="label">💼 LinkedIn</span>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener">Connect with me</a>
+                </div>
+            </div>
+            <center>
+                <button class="button" onclick="downloadCV()">Download CV</button>
+            </center>
         </section>
-
-        <p><a href="form.html" target="_self">Open Form</a></p>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Sushma — Full Stack Developer</p>
+        <p>&copy; 2026 Sushmitha | Full Stack Developer Portfolio</p>
+        <p>Designed & Built with ❤️</p>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll offset for fixed navbar
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Download CV function
+        function downloadCV() {
+            alert('CV download feature coming soon!\nEmail: sushmithabr80@gmail.com\nPhone: +91 8660549275');
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
