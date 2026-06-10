@@ -1,0 +1,15 @@
+h1{
+    height:10cm;
+    width: 10cm;
+    background:linear-gradient(32deg,
+    #3503b4,
+    #89D7B7,
+    #015230,
+    #72d81e);
+}
+body{
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    gap: 1cm;
+}
