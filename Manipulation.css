@@ -1,0 +1,15 @@
+video{
+    width: 10px;
+    height: 10px;
+}
+body{
+    background-color: cyan;
+}
+#content{
+    display: flex;
+    gap: 1cm;
+}
+h1{
+    
+    color: blueviolet;
+}

@@ -3,29 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forms</title>
+    <title>Responsive form</title>
+    
 </head>
 <body>
-    <form>
-       <p>
-           Name: <input type="text" placeholder="smitha"><br>
-           Age: <input type="number" placeholder="20"><br>
-           Email: <input type="mail" placeholder="123@gmail.com"> <br>
-           Gender: <input type="radio" name="gender" id="1">Male
-           <input type="radio" name="gender" id="2">Female
-           <input type="radio" name="gender" id="3">Do not want to mention <br>
-           Qualification: <input type="checkbox" name="qualification" id="1">10 <sup>th</sup>
-           <input type="checkbox" name="qualification" id="2">12 <sup>th</sup>
-           <input type="checkbox" name="qualification" id="3">Diploma
-           <input type="checkbox" name="qualification" id="4">Degree
-           <input type="checkbox" name="qualification" id="5">Masters
-           <input type="checkbox" name="qualification" id="6">phD <br>
-           Password: <input type="password" placeholder = "svdhdvcjh">
-           Date: <input type="date">
-           Time: <input type="datetime-local">
-           <button type="submit">Submit</button> <button type="reset">Clear</button>
+    <h1>Ticket Booking</h1>
+    <form id="details">
+        <label>Name:</label>
+        <input type="text" id="name" required>
+        <br><br>
+        <label>Email</label>
+        <input type="text" id="email" required>
+        <br><br>
+        <label>Phone Number</label>
+        <input type=" number" id="phone" required>
+        <br><br>
+        <label>Age</label>
+        <input type="number" id="age" required>
+        <br><br>
+        <label>Gender</label>
+        <input type="radio" name="gender" id="female">female
+        <input type="radio" name="gender" id="male">male
+        <input type="radio" name="gender" id="Not to mention">Not to mention
+        <br><br>
+        <label>Verefied</label>
+        <input type="checkbox" name="Documents" value="Adhar card">Adhar card
+        <input type="checkbox" name="Documents" value="voter id">voter id
+        <br><br>
+        <label>Address</label>
+        <input type="text" id="address" required>
+        <br><br>
+        <label>Date</label>
+        <input type="datetime-local" id="date" required>
+        <br><br>
+        <label> Starting Place</label>
+        <input type="text" id="place" required>
+        <br><br>
+        <label>Arrival Place</label>
+        <input type="text" id="place" required>
+        <br><br>
+        <label> photo</label>
+        <input type="file" id="image" accept="image/*" required>
+        <br><br>
+        <button type="submit">Submit</button>
+     </form>
+     <h2>Booking Details</h2>
+     <p id="p1"></p>
+     <p id="p2"></p>
+     <p id="p3"></p>
+     <p id="p4"></p>
+     <p id="p5"></p>
+     <p id="p6"></p>
+     <p id="p7"></p>
+     <p id="p8"></p>
+     <img id="dp" width="200px">
+     <script src="Form.js"></script>
 
-       </p> 
-    </form>
 </body>
 </html>
